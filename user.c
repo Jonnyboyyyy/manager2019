@@ -21,16 +21,6 @@ void make_file(char* filename){
 	fclose(datafile);
 	return;
 }
-void showList(char* filename){
-	FILE *datafile = fopen(filename,"rt");
-	char input[100];
-	printf("User list (id/password)\n");
-	while(fgets(input, 100, datafile)){
-		printf("%s\n",input);
-	}
-	fclose(datafile);
-	return;
-}
 void showListr(LOGIN* list[], int count){
 	for(int i=0;i<count;i++){
 		printf("%s %s\n",list[i]->id,list[i]->password);

@@ -7,6 +7,9 @@ int main(int argc, char* argv[]) {
   int count=0;
   char command[20];
   int makeFile=0;
+#ifdef DEBUG_MODE
+	printf("DEBUG>> datafile opened! \n");
+#endif
   //int menu_id;
   if (argc != 2) {
     printf("Usage : manager <datafile>\n");
@@ -42,7 +45,6 @@ int main(int argc, char* argv[]) {
     		}
 		else if(strcmp(command, "join")==0){
 			count +=  join(userlist, count);
-			save_file(userlist, count, argv[1]);
 		}
 		else if(strcmp(command, "list")==0) showListr(userlist, count);
 		else if(strcmp(command, "exit")==0) break; 
