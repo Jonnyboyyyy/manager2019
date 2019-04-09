@@ -9,18 +9,35 @@ int load_file(LOGIN* list[], char* filename){
     count++;
   }
   count--;
-  printf("%d records read!\n",count);\
+  if (count !=0)
+  	printf("%d records read!\n",count);
+  else
   fclose(datafile);
   return count;
 }
 void make_file(char* filename){
-	FILE *datafile = fopen(filename,"w");
-	printf("File made!");
+	FILE *datafile = fopen(filename,"a");
+	printf("File made!\n");
 	fclose(datafile);
 	return;
 }
+void showList(char* filename){
+	FILE *datafile = fopen(filename,"rt");
+	char input[100];
+	printf("User list (id/password)\n");
+	while(fgets(input, 100, datafile)){
+		printf("%s\n",input);
+	}
+	fclose(datafile);
+	return;
+}
+void showListr(LOGIN* list[], int count){
+	for(int i=0;i<count;i++){
+		printf("%s %s\n",list[i]->id,list[i]->password);
+	}
+}
 
-void join(LOGIN* list[], int count){
+int join(LOGIN* list[], int count){
   char id[20], pass[20];
   while(1){
     printf("Enter new user id >> ");
@@ -41,7 +58,7 @@ void join(LOGIN* list[], int count){
       strcpy(list[count]->id, id);
       strcpy(list[count]->password, pass);
       printf("New user added!\n");
-      break;
+      return 1;
     }
   }
 }
